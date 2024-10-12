@@ -124,6 +124,13 @@ def ebsynth_utility_stage2(dbg, project_args, key_min_gap, key_max_gap, key_th, 
 
     remove_pngs_in_dir(org_key_path)
     os.makedirs(org_key_path, exist_ok=True)
+    
+    # 添加新的文件夹路径
+    key_mask_path = os.path.join(os.path.dirname(org_key_path), "key_masks")
+    
+    # 创建新文件夹并清空
+    os.makedirs(key_mask_path, exist_ok=True)
+    remove_pngs_in_dir(key_mask_path)
 
     fps = 30
     clip = cv2.VideoCapture(original_movie_path)
@@ -156,18 +163,20 @@ def ebsynth_utility_stage2(dbg, project_args, key_min_gap, key_max_gap, key_th, 
     
     for k in keys:
         filename = str(k).zfill(5) + ".png"
-        shutil.copy( os.path.join( frame_path , filename) , os.path.join(org_key_path, filename) )
-
+        shutil.copy(os.path.join(frame_path, filename), os.path.join(org_key_path, filename))
+        
+        # 复制对应的蒙版文件到 key_mask_path
+        if frame_mask_path and os.path.exists(os.path.join(frame_mask_path, filename)):
+            shutil.copy(os.path.join(frame_mask_path, filename), os.path.join(key_mask_path, filename))
 
     dbg.print("")
     dbg.print("Keyframes are output to [" + org_key_path + "]")
+    dbg.print("关键帧蒙版已输出到 [" + key_mask_path + "]")
     dbg.print("")
     dbg.print("[Ebsynth Utility]->[configuration]->[stage 2]->[Threshold of delta frame edge]")
     dbg.print("The smaller this value, the narrower the keyframe spacing, and if set to 0, the keyframes will be equally spaced at the value of [Minimum keyframe gap].")
     dbg.print("")
     dbg.print("If you do not like the selection, you can modify it manually.")
     dbg.print("(Delete keyframe, or Add keyframe from ["+frame_path+"])")
-
-    dbg.print("")
     dbg.print("completed.")
-
+    
