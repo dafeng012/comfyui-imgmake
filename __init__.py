@@ -4,6 +4,7 @@ from .gj_image import *
 from .load_images_nodes import *
 from .image_name_slect import *
 from .ebs import *
+from .main import *
 NODE_CLASS_MAPPINGS = {
     "image2mask": image2mask,
     "video2image": Video2Frames,
@@ -15,6 +16,7 @@ NODE_CLASS_MAPPINGS = {
     "SelectImageName":SelectImageName,
     "ebsynth_process":ebsynth_process,
     "ebsynth_hecheng":ebsynth_hecheng,
+    "ebsynth_main":ebsynth_main,
     
 }
 
@@ -30,4 +32,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "SelectImageName": "SelectImageName",
     "ebsynth_process": "ebsynth_process",
     "ebsynth_hecheng": "ebsynth_hecheng",
+    "ebsynth_main": "ebsynth_main",
 }

@@ -187,7 +187,7 @@ class LoadImagesFromDirectoryPath:
     CATEGORY = "IMAGEmake"
 
     def load_images(self, directory: str, **kwargs):
-        image_list = [file for file in os.listdir(directory)]
+        image_list = [os.path.splitext(file)[0] for file in os.listdir(directory) if file.lower().endswith('.png')]
         output_string = ', '.join(image_list)
         directory = strip_path(directory)
         if directory is None or validate_load_images(directory) != True:

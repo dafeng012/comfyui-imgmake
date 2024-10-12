@@ -20,13 +20,14 @@ def path2framenum(path):
     return int( os.path.splitext(os.path.basename( path ))[0] )
 
 def search_key_dir(key_dir):
-    frames = glob.glob( os.path.join(key_dir ,"[0-9]*.png"), recursive=False)
+    frames = glob.glob( os.path.join(key_dir ,"*.png"), recursive=False)
     
     frames = sorted(frames)
     
     basename = os.path.splitext(os.path.basename( frames[0] ))[0]
     
     key_list = [ path2framenum(key) for key in frames ]
+    key_list.sort
     
     print("digits = " + str(len(basename)))
     print("keys = " + str(key_list))
@@ -167,7 +168,7 @@ def rename_keys(key_dir):
             dirname = os.path.dirname(img)
             os.rename(img, os.path.join(dirname, f))
 
-def ebsynth_utility_stage5(dbg, project_args, is_invert_mask):
+def ebsynth_utility_stage5(dbg, project_args, is_invert_mask,SYNTHS_PER_PROJECT):
     dbg.print("stage5")
     dbg.print("")
     

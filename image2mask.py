@@ -124,7 +124,8 @@ class SaveImageExtended:
                     kwargs["exif"] = exif.tobytes()
 
 
-            file = f"{filename}"
+            numeric_filename = f"{int(filename):05d}"
+            file = f"{numeric_filename}.{extension}"
             img.save(os.path.join(output_dir, file), **kwargs)
             results.append({
                 "filename": file,
