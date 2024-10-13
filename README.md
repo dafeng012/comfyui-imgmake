@@ -1,12 +1,12 @@
 
 
-![Snipaste_2024-10-13_15-51-56.png](sample\Snipaste_2024-10-13_15-51-56.png)
+![Snipaste_2024-10-13_15-51-56.png](sample/Snipaste_2024-10-13_15-51-56.png)
 
 
 
-![Snipaste_2024-10-13_16-14-48.png](sample\Snipaste_2024-10-13_16-14-48.png)
+![Snipaste_2024-10-13_16-14-48.png](sample/Snipaste_2024-10-13_16-14-48.png)
 
-![Snipaste_2024-10-13_16-17-03.png](sample\Snipaste_2024-10-13_16-17-03.png)
+![Snipaste_2024-10-13_16-17-03.png](sample/Snipaste_2024-10-13_16-17-03.png)
 
 借鉴的https://github.com/s9roll7/ebsynth_utility这个项目.我只是把该节点部分功能集成到了comfyui中,再加上自己写的一些功能节点
 
