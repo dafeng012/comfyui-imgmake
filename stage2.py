@@ -131,7 +131,18 @@ def ebsynth_utility_stage2(dbg, project_args, key_min_gap, key_max_gap, key_th, 
     # 创建新文件夹并清空
     os.makedirs(key_mask_path, exist_ok=True)
     remove_pngs_in_dir(key_mask_path)
-
+    # 添加新的文件夹路径图片转绘的
+    image2imagepath = os.path.join(os.path.dirname(org_key_path), "img2img_key")
+    
+    # 创建新文件夹并清空图片转绘的
+    os.makedirs(image2imagepath, exist_ok=True)
+    remove_pngs_in_dir(image2imagepath)
+     # 添加新的文件夹路径图片高清放大转绘的
+    imageupsale_path = os.path.join(os.path.dirname(org_key_path), "img2img_upscale_key")
+    
+    # 创建新文件夹并清空图片高清放大转绘的
+    os.makedirs(imageupsale_path, exist_ok=True)
+    remove_pngs_in_dir(imageupsale_path)
     fps = 30
     clip = cv2.VideoCapture(original_movie_path)
     if clip:
