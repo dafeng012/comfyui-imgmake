@@ -55,7 +55,7 @@ class ebsynth_main:
                 "st3_5_use_mask_ref":("BOOLEAN", {"default": False, "true_value": "True", "false_value": "False"}),
                 "st3_5_use_mask_org":("BOOLEAN", {"default": False, "true_value": "True", "false_value": "False"}),
                 "color_matcher_ref_type":("INT", {"default": 0}),
-                "color_matcher_ref_image":("IMAGE", {"default": None}),
+                
                 "blend_rate":("FLOAT", {"default": 1,"min":0,"max":1,"step":0.1}),
                 "export_type":("STRING", {"default": "mp4", "values": ["gif", "webm","mp4","rawvideo"]}),
 
@@ -64,6 +64,11 @@ class ebsynth_main:
                 "devices":(["cuda:0", "cpu"],),
                 "SYNTHS_PER_PROJECT":("INT", {"default": 15,"min":1,"max":20,"step":1}),
             },
+            "optional": {
+                # 应该默认是第一张
+                "color_matcher_ref_image":("IMAGE", {"default": None}), 
+
+                },
         }
         
     RETURN_TYPES = ("STRING","STRING",)
@@ -71,7 +76,7 @@ class ebsynth_main:
     FUNCTION = "ebsynth_utility_process"
     CATEGORY = "IMAGEmake"
 
-    def ebsynth_utility_process(self, stage_index: int, project_dir:str, original_movie_path:str, frame_width:int, frame_height:int, st1_masking_method_index:int, st1_mask_threshold:float, tb_use_fast_mode:bool, tb_use_jit:bool, clipseg_mask_prompt:str, clipseg_exclude_prompt:str, clipseg_mask_threshold:int, clipseg_mask_blur_size:int, clipseg_mask_blur_size2:int, key_min_gap:int, key_max_gap:int, key_th:float, key_add_last_frame:bool, color_matcher_method:str, st3_5_use_mask:bool, st3_5_use_mask_ref:bool, st3_5_use_mask_org:bool, color_matcher_ref_type:int, color_matcher_ref_image:Image, blend_rate:float, export_type:str, mask_mode:str, is_invert_mask:bool, devices:str,SYNTHS_PER_PROJECT):
+    def ebsynth_utility_process(self, stage_index: int, project_dir:str, original_movie_path:str, frame_width:int, frame_height:int, st1_masking_method_index:int, st1_mask_threshold:float, tb_use_fast_mode:bool, tb_use_jit:bool, clipseg_mask_prompt:str, clipseg_exclude_prompt:str, clipseg_mask_threshold:int, clipseg_mask_blur_size:int, clipseg_mask_blur_size2:int, key_min_gap:int, key_max_gap:int, key_th:float, key_add_last_frame:bool, color_matcher_method:str, st3_5_use_mask:bool, st3_5_use_mask_ref:bool, st3_5_use_mask_org:bool, color_matcher_ref_type:int,  blend_rate:float, export_type:str, mask_mode:str, is_invert_mask:bool, devices:str,SYNTHS_PER_PROJECT:int,color_matcher_ref_image:Image=None):
         args = locals()
         info = ""
         info = dump_dict(info, args)
