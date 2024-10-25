@@ -32,7 +32,7 @@ class ebsynth_main:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "stage_index":("INT", {"default": 0, "values": [0,1,3,5,7]}),
+                "stage_index":([0,1,3,5,7],),
                 "project_dir": ("STRING", {}),
                 "original_movie_path": ("STRING", {}),
                 "frame_width": ("INT", {"default": -1}),
