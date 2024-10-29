@@ -10,6 +10,7 @@ from .stage2 import ebsynth_utility_stage2
 from .stage5 import ebsynth_utility_stage5
 from .stage7 import ebsynth_utility_stage7
 from .stage3_5 import ebsynth_utility_stage3_5
+from .stage8 import ebsynth_utility_stage8
 
 
 def x_ceiling(value, step):
@@ -32,7 +33,7 @@ class ebsynth_main:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "stage_index":([0,1,3,5,7],),
+                "stage_index":([0,1,3,5,7,8],),
                 "project_dir": ("STRING", {}),
                 "original_movie_path": ("STRING", {}),
                 "frame_width": ("INT", {"default": -1}),
@@ -67,6 +68,11 @@ class ebsynth_main:
             "optional": {
                 # 应该默认是第一张
                 "color_matcher_ref_image":("IMAGE", {"default": None}), 
+                "bg_src":("STRING", {"default": ""}),
+                "bg_type":(["Fit video length", "Loop"],),
+                "mask_blur_size":("INT", {"default": 5}),
+                "mask_threshold":("FLOAT", {"default": 0,"min":0,"max":1,"step":0.1}),
+                "fg_transparency":("FLOAT", {"default": 0,"min":0,"max":1,"step":0.1}),
 
                 },
         }
@@ -76,7 +82,7 @@ class ebsynth_main:
     FUNCTION = "ebsynth_utility_process"
     CATEGORY = "IMAGEmake"
 
-    def ebsynth_utility_process(self, stage_index: int, project_dir:str, original_movie_path:str, frame_width:int, frame_height:int, st1_masking_method_index:int, st1_mask_threshold:float, tb_use_fast_mode:bool, tb_use_jit:bool, clipseg_mask_prompt:str, clipseg_exclude_prompt:str, clipseg_mask_threshold:int, clipseg_mask_blur_size:int, clipseg_mask_blur_size2:int, key_min_gap:int, key_max_gap:int, key_th:float, key_add_last_frame:bool, color_matcher_method:str, st3_5_use_mask:bool, st3_5_use_mask_ref:bool, st3_5_use_mask_org:bool, color_matcher_ref_type:int,  blend_rate:float, export_type:str, mask_mode:str, is_invert_mask:bool, devices:str,SYNTHS_PER_PROJECT:int,color_matcher_ref_image:Image=None):
+    def ebsynth_utility_process(self, stage_index: int, project_dir:str, original_movie_path:str, frame_width:int, frame_height:int, st1_masking_method_index:int, st1_mask_threshold:float, tb_use_fast_mode:bool, tb_use_jit:bool, clipseg_mask_prompt:str, clipseg_exclude_prompt:str, clipseg_mask_threshold:int, clipseg_mask_blur_size:int, clipseg_mask_blur_size2:int, key_min_gap:int, key_max_gap:int, key_th:float, key_add_last_frame:bool, color_matcher_method:str, st3_5_use_mask:bool, st3_5_use_mask_ref:bool, st3_5_use_mask_org:bool, color_matcher_ref_type:int,  blend_rate:float, export_type:str, mask_mode:str, is_invert_mask:bool, devices:str,SYNTHS_PER_PROJECT:int,bg_src:str, bg_type:str, mask_blur_size:int, mask_threshold:float, fg_transparency:float, color_matcher_ref_image:Image=None):
         args = locals()
         info = ""
         info = dump_dict(info, args)
@@ -134,6 +140,12 @@ class ebsynth_main:
         
         elif stage_index == 7:
             ebsynth_utility_stage7(dbg, project_args, blend_rate, export_type, is_invert_mask)
+        elif stage_index == 8:
+            if mask_mode != "Normal":
+                dbg.print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                dbg.print("Please reset [configuration]->[etc]->[Mask Mode] to Normal.")
+                dbg.print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            ebsynth_utility_stage8(dbg, project_args, bg_src, bg_type, mask_blur_size, mask_threshold, fg_transparency, export_type)
         
         else:
             pass
