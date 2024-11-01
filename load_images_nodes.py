@@ -118,51 +118,51 @@ def load_images(directory: str, image_load_cap: int = 0, skip_first_images: int 
         raise FileNotFoundError(f"No images could be loaded from directory '{directory}'.")
     return images, masks, images.size(0)
 
-class loadImagesFromFile:
-    @classmethod
-    def INPUT_TYPES(s):
-        input_dir = folder_paths.get_input_directory()
-        directories = []
-        for item in os.listdir(input_dir):
-            if not os.path.isfile(os.path.join(input_dir, item)) and item != "clipspace":
-                directories.append(item)
-        return {
-            "required": {
-                "directory": (directories,),
-            },
-            "optional": {
-                "image_load_cap": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
-                "skip_first_images": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
-                "select_every_nth": ("INT", {"default": 1, "min": 1, "max": BIGMAX, "step": 1}),
-                "meta_batch": ("VHS_BatchManager",),
-            },
-            "hidden": {
-                "unique_id": "UNIQUE_ID"
-            },
-        }
+# class loadImagesFromFile:
+#     @classmethod
+#     def INPUT_TYPES(s):
+#         input_dir = folder_paths.get_input_directory()
+#         directories = []
+#         for item in os.listdir(input_dir):
+#             if not os.path.isfile(os.path.join(input_dir, item)) and item != "clipspace":
+#                 directories.append(item)
+#         return {
+#             "required": {
+#                 "directory": (directories,),
+#             },
+#             "optional": {
+#                 "image_load_cap": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
+#                 "skip_first_images": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
+#                 "select_every_nth": ("INT", {"default": 1, "min": 1, "max": BIGMAX, "step": 1}),
+#                 "meta_batch": ("VHS_BatchManager",),
+#             },
+#             "hidden": {
+#                 "unique_id": "UNIQUE_ID"
+#             },
+#         }
     
-    RETURN_TYPES = ("IMAGE", "MASK", "INT")
-    RETURN_NAMES = ("IMAGE", "MASK", "frame_count")
-    FUNCTION = "load_images"
+#     RETURN_TYPES = ("IMAGE", "MASK", "INT")
+#     RETURN_NAMES = ("IMAGE", "MASK", "frame_count")
+#     FUNCTION = "load_images"
 
-    CATEGORY = "IMAGEmake"
+#     CATEGORY = "IMAGEmake"
 
-    def load_images(self, directory: str, **kwargs):
-        directory = folder_paths.get_annotated_filepath(strip_path(directory))
-        return load_images(directory, **kwargs)
+#     def load_images(self, directory: str, **kwargs):
+#         directory = folder_paths.get_annotated_filepath(strip_path(directory))
+#         return load_images(directory, **kwargs)
     
-    @classmethod
-    def IS_CHANGED(s, directory: str, **kwargs):
-        directory = folder_paths.get_annotated_filepath(strip_path(directory))
-        return is_changed_load_images(directory, **kwargs)
+#     @classmethod
+#     def IS_CHANGED(s, directory: str, **kwargs):
+#         directory = folder_paths.get_annotated_filepath(strip_path(directory))
+#         return is_changed_load_images(directory, **kwargs)
 
-    @classmethod
-    def VALIDATE_INPUTS(s, directory: str, **kwargs):
-        directory = folder_paths.get_annotated_filepath(strip_path(directory))
-        return validate_load_images(directory)
+#     @classmethod
+#     def VALIDATE_INPUTS(s, directory: str, **kwargs):
+#         directory = folder_paths.get_annotated_filepath(strip_path(directory))
+#         return validate_load_images(directory)
 
 
-class LoadImagesFromPath:
+class LoadImagesFromPath_lp:
     @classmethod
     def INPUT_TYPES(s):
         return {
