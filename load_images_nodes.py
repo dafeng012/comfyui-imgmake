@@ -118,7 +118,7 @@ def load_images(directory: str, image_load_cap: int = 0, skip_first_images: int 
         raise FileNotFoundError(f"No images could be loaded from directory '{directory}'.")
     return images, masks, images.size(0)
 
-class LoadImagesFromDirectoryUpload:
+class loadImagesFromFile:
     @classmethod
     def INPUT_TYPES(s):
         input_dir = folder_paths.get_input_directory()
@@ -162,7 +162,7 @@ class LoadImagesFromDirectoryUpload:
         return validate_load_images(directory)
 
 
-class LoadImagesFromDirectoryPath:
+class LoadImagesFromPath:
     @classmethod
     def INPUT_TYPES(s):
         return {
