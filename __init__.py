@@ -1,10 +1,10 @@
-from .image2mask import *
-from .video2image import *
-from .gj_image import *
-from .load_images_nodes import *
-from .image_name_slect import *
-from .ebs import *
-from .main import *
+from img_ebsynth.image2mask import *
+from img_ebsynth.video2image import *
+from img_ebsynth.gj_image import *
+from img_ebsynth.load_images_nodes import *
+from img_ebsynth.image_name_slect import *
+from img_ebsynth.ebs import *
+from img_ebsynth.main import *
 NODE_CLASS_MAPPINGS = {
     "image2mask": image2mask,
     "video2image": Video2Frames,
