@@ -53,7 +53,7 @@ class image2mask:
             cv2.imwrite(os.path.join(output_dir, base_name), out)
         return (output_dir,)
 # create_mask_transparent_background(input_dir="C:\\Users\\56381\\Desktop\\fdg\\img2img_key", output_dir="C:\\Users\\56381\\Desktop\\fdg\\fgfggfg", tb_use_fast_mode=True, tb_use_jit=True, st1_mask_threshold=0.5)
-class SaveImageExtended:
+class SaveImage_lp:
     def __init__(self):
         pass
 

@@ -1,4 +1,4 @@
-from .img_ebsynth.image2mask import image2mask,SaveImageExtended
+from .img_ebsynth.image2mask import image2mask,SaveImage_lp
 from .img_ebsynth.video2image import Video2Frames,LoadImageListPlus
 from .img_ebsynth.gj_image import VideoKeyFramesExtractor
 from .img_ebsynth.load_images_nodes import LoadImagesFromPath_lp
@@ -10,7 +10,7 @@ NODE_CLASS_MAPPINGS = {
     "video2image": Video2Frames,
     "VideoKeyFramesExtractor": VideoKeyFramesExtractor,
     "LoadImageListPlus": LoadImageListPlus,
-    "SaveImageExtended": SaveImageExtended,
+    "SaveImage_lp": SaveImage_lp,
     "LoadImagesFromPath_lp":LoadImagesFromPath_lp,
     "SelectImageName":SelectImageName,
     "ebsynth_process":ebsynth_process,
@@ -25,7 +25,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "VideoKeyFramesExtractor": "VideoKeyFramesExtractor",
     "LoadImageListPlus": "LoadImageListPlus",
     "SaveImagePlus": "SaveImageExtended",
-    "SaveImageExtended": "SaveImageExtended",
+    "SaveImage_lp": "SaveImage_lp",
     "LoadImagesFromPath_lp": "LoadImagesFromPath_lp",
     "SelectImageName": "SelectImageName",
     "ebsynth_process": "ebsynth_process",
