@@ -24,4 +24,7 @@
 
 如果不能自动下载,请开启科学上网或者手动下载到该路径下
 
+这里是我打包好的模型包.按要求放置即可----------通过网盘分享的文件：img_make模型配置.7z
+链接: https://pan.baidu.com/s/1esXDulF5-CjPPXGsxnGRQA?pwd=5y54 提取码: 5y54 
+
 b站视频教程地址【comfyui-imgmake详细安装使用教程】https://www.bilibili.com/video/BV1WVS3YqELA?vd_source=17fa10fe811dc6d31dd5904ec33d340d
